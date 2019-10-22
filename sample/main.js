@@ -31,13 +31,38 @@ app.on('ready', function() {
     {label: '選択メニュー1', type: 'radio'},
     {label: '選択メニュー2', type: 'radio'},
     {type: 'separator'},
+    {label: 'サブメニュー', submenu: [
     {label: 'サブメニュー1'},
     {label: 'サブメニュー2'}
-  ]};
-  {label: '終了', accelerator: 'Command*Q', click: function() { app.quit(); }}
-])};
+  ]},
+  {label: '終了', accelerator: 'Command+Q', click: function() { app.quit(); }}
+]);
 appIcon.setContextMenu(contextMenu);
 appIcon.setToolTip('This is sample.');
+
+
+var menu = Menu.buildFormTemplate([
+  {
+    label: 'Sample',
+    submenu: [
+      {label: 'About'},
+      {label: 'Quit' }
+    ]
+  },
+  {
+    label: 'File',
+    submenu: [
+      {label: 'New File'},
+      {label: 'Paste'}
+    ]
+  },
+  {
+    label: 'Edit',
+    submenu: [
+      {label: 'Copy', accelerator: 'Command+C', selector: 'copy'},
+      {label: 'Paste', accelerator: 'Command+V', selector: 'paste'}
+    ]
+  }
+]);
+Menu.setApplicationMenu(menu);
 });
-
-
